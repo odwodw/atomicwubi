@@ -853,23 +853,30 @@ class SoundManager {
   }
 
   loadSounds() {
+    this.loadedSounds = {};
     const soundFiles = [
       'correct', 'wrong', 'combo3', 'combo5', 'combo10',
       'achievement', 'level_complete', 'warning', 'click'
     ];
 
     soundFiles.forEach(name => {
-      this.sounds[name] = new Audio(`https://gitee.com/wod/atomicwubi/raw/main/sounds/${name}.mp3`);
-      this.sounds[name].volume = this.volume;
+      const audio = new Audio(`https://raw.githubusercontent.com/odwodw/atomicwubi/refs/heads/main/sounds/${name}.mp3`);
+      audio.preload = 'auto';
+      audio.volume = this.volume;
+      audio.addEventListener('canplaythrough', () => {
+        this.loadedSounds[name] = true;
+      });
+      this.sounds[name] = audio;
     });
   }
 
   play(name) {
     if (!this.enabled || !this.sounds[name]) return;
     
-    // 避免重复播放（重新创建实例）
-    const sound = new Audio(`https://gitee.com/wod/atomicwubi/raw/main/sounds/${name}.mp3`);
-    sound.volume = this.volume;
+    // 使用预加载的音效实例，避免重复请求
+    // 直接使用原始实例播放，避免cloneNode可能导致的重新请求
+    const sound = this.sounds[name];
+    sound.currentTime = 0;
     sound.play().catch(e => console.warn('Audio play error:', e));
   }
 
