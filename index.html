@@ -859,7 +859,7 @@ class SoundManager {
     ];
 
     soundFiles.forEach(name => {
-      this.sounds[name] = new Audio(`sounds/${name}.mp3`);
+      this.sounds[name] = new Audio(`https://gitee.com/wod/atomicwubi/raw/main/sounds/${name}.mp3`);
       this.sounds[name].volume = this.volume;
     });
   }
@@ -868,7 +868,7 @@ class SoundManager {
     if (!this.enabled || !this.sounds[name]) return;
     
     // 避免重复播放（重新创建实例）
-    const sound = new Audio(`sounds/${name}.mp3`);
+    const sound = new Audio(`https://gitee.com/wod/atomicwubi/raw/main/sounds/${name}.mp3`);
     sound.volume = this.volume;
     sound.play().catch(e => console.warn('Audio play error:', e));
   }
