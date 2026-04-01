@@ -674,9 +674,9 @@ input[type="range"]::-moz-range-thumb{
     <div class="dict-actions">
       <button style="border-color:var(--cyan);color:var(--cyan)" onclick="openDictImport()">导入编码</button>
       <button style="border-color:var(--gold);color:var(--gold)" onclick="exportUserDict()">导出自定义</button>
+      <button style="border-color:var(--red);color:var(--red)" onclick="resetUserDict()">重置自定义</button>
       <button style="border-color:var(--green);color:var(--green)" onclick="exportUserData()">导出用户数据</button>
       <button style="border-color:var(--magenta);color:var(--magenta)" onclick="openDataImport()">导入用户数据</button>
-      <button style="border-color:var(--red);color:var(--red)" onclick="resetUserDict()">重置自定义</button>
     </div>
     <div style="font-size:.75rem;color:var(--text-dim);margin-bottom:8px">自定义编码会覆盖内置编码，影响所有关卡和文章模式</div>
     <input type="text" class="dict-search" id="dictSearchInput" placeholder="搜索汉字或编码..." oninput="renderDictList()">
@@ -850,7 +850,7 @@ input[type="range"]::-moz-range-thumb{
     </div>
     <div style="margin-bottom:16px">
       <label style="display:block;margin-bottom:8px;font-weight:bold">或粘贴数据</label>
-      <textarea id="dataImportTextarea" rows="8" placeholder='粘贴JSON数据...' style="width:100%;padding:8px;border:1px solid var(--text-muted);border-radius:var(--radius);background:var(--bg);font-family:var(--font-mono);font-size:.8rem"></textarea>
+      <textarea id="dataImportTextarea" rows="8" placeholder='粘贴JSON数据...' class="import-textarea"></textarea>
     </div>
     <div class="import-error" id="dataImportError"></div>
     <div class="dialog-btns">
